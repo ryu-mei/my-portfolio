@@ -4,15 +4,22 @@ let nextId = 0;
 function App() {
     const [todos, setTodos] = useState([]);
     const [inputValue, setInputValue] = useState('');
+    const [completed, setCompleted] = useState(false);
+
     const handleChange = (e) => {
         setInputValue(e.target.value);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue !== '') {
             setTodos([...todos, { id: nextId++, name: inputValue }]);
         }
         setInputValue('');
+    };
+
+    const compClassToggle = () => {
+        setCompleted(!completed);
     };
 
     return (
@@ -23,8 +30,12 @@ function App() {
             <ul>
                 {todos.map((todo) => {
                     return (
-                        <li key={todo.id}>
+                        <li
+                            key={todo.id}
+                            className={completed ? 'completed' : ''}
+                        >
                             {todo.name}
+                            <button onClick={compClassToggle}>完了</button>
                             <button
                                 onClick={() => {
                                     setTodos(
@@ -34,7 +45,7 @@ function App() {
                                     );
                                 }}
                             >
-                                完了
+                                削除
                             </button>
                         </li>
                     );
