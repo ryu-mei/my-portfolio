@@ -4,7 +4,7 @@ let nextId = 0;
 function App() {
     const [todos, setTodos] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [completed, setCompleted] = useState(false);
+    // const [completed, setCompleted] = useState(false);
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
@@ -13,13 +13,24 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue !== '') {
-            setTodos([...todos, { id: nextId++, name: inputValue }]);
+            return setTodos([
+                ...todos,
+                { id: nextId++, name: inputValue, completed: false },
+            ]);
         }
         setInputValue('');
     };
 
-    const compClassToggle = () => {
-        setCompleted(!completed);
+    const checkCompleted = (id, completed) => {
+        setTodos((todos) => {
+            const newTodos = todos.map((todo) => {
+                if (todo.id === id) {
+                    return { ...todo, completed };
+                }
+                return todo;
+            });
+            return newTodos;
+        });
     };
 
     return (
@@ -32,10 +43,16 @@ function App() {
                     return (
                         <li
                             key={todo.id}
-                            className={completed ? 'completed' : ''}
+                            className={todo.completed ? 'completed' : ''}
                         >
                             {todo.name}
-                            <button onClick={compClassToggle}>完了</button>
+                            <button
+                                onClick={() => {
+                                    checkCompleted(todo.id, !todo.completed);
+                                }}
+                            >
+                                完了
+                            </button>
                             <button
                                 onClick={() => {
                                     setTodos(

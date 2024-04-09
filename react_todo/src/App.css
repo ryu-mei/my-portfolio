@@ -10,5 +10,5 @@ li {
 
 .completed {
     text-decoration: line-through;
-    color: red;
+    color: blue;
 }
