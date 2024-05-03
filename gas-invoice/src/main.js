@@ -27,6 +27,7 @@ const substringTagBefore = (html, searchTag) => {
 const menuItemGetData = () => {
   const spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
   const sheetData = spreadSheet.getSheetByName(`シート1`);
+
   const colInvoiceNumber = 1;
 
   const colURL = 2;
