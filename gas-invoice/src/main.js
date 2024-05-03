@@ -78,7 +78,7 @@ const menuItemGetData = () => {
         if (html2 !== ``) {
           const html3 = substringTagBefore(html2, `</p>`);
           if (html3 !== ``) {
-            console.log(html3);
+            // console.log(html3);
             sheetData.getRange(i, colDate).setValue(html3);
           }
         }
