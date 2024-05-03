@@ -77,7 +77,7 @@ const menuItemGetData = () => {
     {
       const html1 = substringTagAfter(
         htmlPage,
-        `hontenaddr_label itemlabel">本店又は主たる事務所の所在地</h3>`
+        `<h3 class="hontenaddr_label itemlabel">本店又は主たる事務所の所在地</h3>`
       );
       if (html1 !== ``) {
         const html2 = substringTagAfter(html1, `<p class="itemdata">`);
